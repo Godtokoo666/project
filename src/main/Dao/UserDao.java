@@ -5,11 +5,7 @@ public class UserDao{
 
     private Connection connection;
     public void UserRegister(User us) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        String url="jdbc:mysql://localhost:3306/javaweb?useUnicode=true&characterEncoding=UTF8&useSSL=true&serverTimezone=GMT";
-        String user="root";
-        String pass="jDQqt<=tU012";
-        Connection connection=DriverManager.getConnection(url,user,pass);
+        Connection connection=DBUtil.con();
         String sql="insert into user(username,password,category) values(?,?,?)";
         PreparedStatement preparedStatement=connection.prepareStatement(sql);{
             preparedStatement.setString(1,us.getUsername());
@@ -21,11 +17,7 @@ public class UserDao{
         connection.close();
     }
     public User UserLogin(String username,String password) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        String url="jdbc:mysql://localhost:3306/javaweb?useUnicode=true&characterEncoding=UTF8&useSSL=true&serverTimezone=GMT";
-        String user="root";
-        String pass="jDQqt<=tU012";
-        Connection connection=DriverManager.getConnection(url,user,pass);
+        Connection connection = DBUtil.con();
         Statement statement = connection.createStatement();
         String sql="SELECT * FROM user WHERE username = '"+username+"'" ;
         ResultSet resultSet = statement.executeQuery(sql);
@@ -43,11 +35,7 @@ public class UserDao{
         return null;
     }
     public void DoTest(String username,int number,int pass_number) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        String url="jdbc:mysql://localhost:3306/javaweb?useUnicode=true&characterEncoding=UTF8&useSSL=true&serverTimezone=GMT";
-        String user="root";
-        String pass="jDQqt<=tU012";
-        Connection connection=DriverManager.getConnection(url,user,pass);
+        Connection connection=DBUtil.con();
         String sql1="SELECT * FROM user WHERE username = '"+username+"'" ;
         Statement statement =connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql1);

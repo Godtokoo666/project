@@ -10,11 +10,7 @@ public class AdminDataDao {
     private Connection connection;
     public List<User> rate() throws ClassNotFoundException, SQLException {
         List<User> users = new ArrayList<>();
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        String url="jdbc:mysql://localhost:3306/javaweb?useUnicode=true&characterEncoding=UTF8&useSSL=true&serverTimezone=GMT";
-        String user="root";
-        String pass="jDQqt<=tU012";
-        Connection connection= DriverManager.getConnection(url,user,pass);
+        Connection connection=DBUtil.con();
         String sql = "select * from user ";
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
